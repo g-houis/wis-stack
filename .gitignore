@@ -1,0 +1,12 @@
+# conf
+/config/*.json
+!/config/default.json
+
+# build
+/dist
+
+# node
+/node_modules
+
+# yarn
+yarn.lock
