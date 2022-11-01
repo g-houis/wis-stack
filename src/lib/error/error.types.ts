@@ -34,6 +34,12 @@ export class NotFoundError extends ApiError {
   }
 }
 
+export class ProjectError extends ApiError {
+  constructor(errorData: ErrorData) {
+    super(ERRORS_TYPE.ERROR, 500, errorData.code, errorData.title, errorData.detail);
+  }
+}
+
 export const ERRORS_TYPE = {
   BAD_REQUEST: 'BAD_REQUEST',
   NOT_FOUND: 'NOT_FOUND',
