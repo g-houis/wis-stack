@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import ConfigService from './services/config/config.service';
 import testController from './controllers/test/test.controller';
 import { errorHandler, notFoundErrorHandler } from './lib/error/error.middleware';
+import logger from './lib/logger/logger';
 
 const app = express();
 
@@ -20,5 +21,5 @@ app.use('*', notFoundErrorHandler);
 app.use(errorHandler);
 
 app.listen(ConfigService.getExpressPort(), () => {
-  console.log(`server is up on port ${ConfigService.getExpressPort()} with env ${process.env.NODE_ENV}`);
+  logger.info(`server is up on port ${ConfigService.getExpressPort()} with env ${process.env.NODE_ENV}`);
 });

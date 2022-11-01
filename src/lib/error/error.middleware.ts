@@ -1,5 +1,6 @@
 import express, { NextFunction, Request, Response } from 'express';
 import { ApiError, BadRequestError, ERRORS_TYPE, NotFoundError, WsErrors } from './error.types';
+import logger from '../logger/logger';
 
 export const notFoundErrorHandler = (
   req: Request,
@@ -37,9 +38,9 @@ const apiErrorHandler = (
   res: express.Response,
 ): void => {
   if (error.name === ERRORS_TYPE.ERROR) {
-    console.error(`${error.name} ${error.message} ${error.stack}`);
+    logger.error(`${error.name} ${error.message} ${error.stack}`);
   } else {
-    console.error(`${error.name} ${error.message}`);
+    logger.error(`${error.name} ${error.message}`);
   }
   res
     .status(error.status ?? 500)
@@ -58,7 +59,7 @@ const unknowErrorHandler = (
   req: express.Request,
   res: express.Response,
 ): void => {
-  console.error(`${error.name} ${error.message} ${error.stack}`);
+  logger.error(`${error.name} ${error.message} ${error.stack}`);
   res
     .status(500)
     .send({ error: { name: ERRORS_TYPE.ERROR } });
