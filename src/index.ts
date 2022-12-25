@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import ConfigService from './services/config/config.service';
-import testController from './controllers/test/test.controller';
+import carController from './controllers/car/car.controller';
 import { errorHandler, notFoundErrorHandler } from './lib/error/error.middleware';
 import logger from './lib/logger/logger';
 
@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // controllers
-app.use('/test', testController);
+app.use('/cars', carController);
 
 // errors
 app.use('*', notFoundErrorHandler);
